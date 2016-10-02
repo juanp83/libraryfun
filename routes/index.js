@@ -7,6 +7,7 @@ var knex = require('../db/knex');
 
 router.post('/signup', function(req, res, next) {
   var password = bcrypt.hashSync(req.body.password, 8);
+  console.log(req.body);
   knex('users').where({username: req.body.username.toLowerCase()}).then(function(data) {
     if (data.length) {
       res.send('That username already exists')
